@@ -651,7 +651,7 @@
     position: absolute;
     inset: 0;
   
-    background: url('../media/closing.jpg') center / cover no-repeat;
+    background: url('../media/closing.png') center / cover no-repeat;
     filter: saturate(0.85);
   }
   
