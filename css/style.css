@@ -1,0 +1,1485 @@
+
+/* =========================================================
+   01. ROOT VARIABLES & RESET
+========================================================= */
+
+:root {
+    --wine: #210b12;
+    --wine2: #4b1525;
+    --gold: #c9a66b;
+    --gold-light: #dfc59b;
+    --cream: #f4ead8;
+    --muted: #b9a89c;
+  
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  
+    --dark: #10070a;
+    --darkest: #0a0407;
+    --transition: 0.35s ease;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 72px;
+  }
+  
+  body {
+    margin: 0;
+    background: var(--dark);
+    color: var(--cream);
+    font-family: var(--sans);
+    overflow-x: hidden;
+  }
+  
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  button {
+    font-family: inherit;
+  }
+  
+  
+  /* =========================================================
+     02. SCROLL PROGRESS
+  ========================================================= */
+  
+  .scrollProgress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+  
+    width: 0;
+    height: 2px;
+  
+    background: var(--gold);
+    transform-origin: left;
+  }
+  
+  
+  /* =========================================================
+     03. NAVIGATION
+  ========================================================= */
+  
+  .topNav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 20;
+  
+    height: 70px;
+    padding: 0 clamp(20px, 5vw, 72px);
+  
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  
+    background: linear-gradient(#12060bd9, transparent);
+    transition: background 0.3s ease;
+  }
+  
+  .navMark {
+    font: 600 20px var(--serif);
+    letter-spacing: 0.1em;
+  }
+  
+  .navMark span {
+    color: var(--gold);
+  }
+  
+  .topNav nav {
+    display: flex;
+    gap: clamp(18px, 3vw, 42px);
+  
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  
+    color: #e2d6c6;
+  }
+  
+  .topNav nav a,
+  .textLink {
+    transition: color var(--transition);
+  }
+  
+  .topNav nav a:hover,
+  .textLink:hover {
+    color: var(--gold);
+  }
+  
+  .navButton,
+  .outlineButton {
+    padding: 12px 18px;
+  
+    font-size: 10px;
+    letter-spacing: 0.15em;
+  
+    color: var(--gold);
+    border: 1px solid #c9a66b80;
+  
+    transition: all 0.25s ease;
+  }
+  
+  .navButton:hover,
+  .outlineButton:hover {
+    background: var(--gold);
+    color: #1a080d;
+  }
+  
+  .menuToggle {
+    display: none;
+  
+    background: none;
+    border: 0;
+    color: var(--cream);
+  
+    font-size: 22px;
+    cursor: pointer;
+  }
+  
+  
+  /* =========================================================
+     04. HERO SECTION
+  ========================================================= */
+  
+  .hero {
+    position: relative;
+  
+    min-height: 100svh;
+  
+    display: grid;
+    place-items: center;
+  
+    overflow: hidden;
+    background: var(--dark);
+  }
+  
+  .heroImage {
+    position: absolute;
+    inset: 0;
+  
+    background: url('../media/landing.png') center / cover;
+    filter: saturate(0.72);
+  
+    transform: scale(1.04);
+    animation: heroZoom 18s ease-in-out infinite alternate;
+  }
+  
+  .heroShade {
+    position: absolute;
+    inset: 0;
+  
+    background:
+      linear-gradient(
+        90deg,
+        #090407a8,
+        #14070d77 40%,
+        #090407ad
+      ),
+      linear-gradient(
+        0deg,
+        #0d0509 0%,
+        transparent 45%,
+        #0d0509a8
+      );
+  }
+  
+  .heroContent {
+    position: relative;
+  
+    width: min(900px, 92vw);
+    padding: 100px 20px 90px;
+  
+    text-align: center;
+  }
+  
+  .eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    font-weight: 600;
+    color: var(--gold);
+  }
+  
+  .hero h1 {
+    margin: 40px 0 25px;
+  
+    font: 500 clamp(80px, 15vw, 190px) / 0.72 var(--serif);
+    letter-spacing: -0.055em;
+  
+    text-shadow: 0 6px 50px #0009;
+  }
+  
+  .hero h1 span {
+    display: block;
+  
+    background: linear-gradient(
+      110deg,
+      #fff4de,
+      #d0ad70 65%,
+      #8e693b
+    );
+  
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+  
+  .hero h1 em {
+    display: block;
+  
+    margin: 35px 0;
+  
+    font: italic 34px var(--serif);
+    letter-spacing: 0;
+    color: #f1ddba;
+  }
+  
+  .heroWelcome {
+    max-width: 520px;
+    margin: 34px auto;
+  
+    font: italic 20px / 1.55 var(--serif);
+    color: #e7d9c6;
+  }
+  
+  .heroMeta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+  
+    margin: 30px;
+  
+    color: var(--gold);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+  }
+  
+  .heroMeta i {
+    width: 4px;
+    height: 4px;
+  
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  
+  .scrollCue {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+  
+    transform: translateX(-50%);
+  
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: #d6c6ac;
+    white-space: nowrap;
+  }
+  
+  .scrollCue span {
+    display: block;
+  
+    margin-top: 9px;
+  
+    font-size: 22px;
+    color: var(--gold);
+  
+    animation: bob 1.6s infinite;
+  }
+  
+  .heroDecor {
+    position: absolute;
+  
+    color: #c49a56;
+    font-size: 26px;
+    opacity: 0.5;
+  }
+  
+  .decorA {
+    top: 20%;
+    left: 15%;
+  }
+  
+  .decorB {
+    right: 16%;
+    bottom: 25%;
+  }
+  
+  
+  /* =========================================================
+     05. GENERAL SECTIONS
+  ========================================================= */
+  
+  .section {
+    position: relative;
+    padding: clamp(80px, 12vw, 150px) 8vw;
+  }
+  
+  .section h2 {
+    margin: 18px 0 30px;
+  
+    font: 500 clamp(44px, 7vw, 86px) / 0.98 var(--serif);
+    letter-spacing: -0.025em;
+  }
+  
+  .section h2 i {
+    color: var(--gold);
+  }
+  
+  .sectionHeading {
+    text-align: center;
+    margin-bottom: 55px;
+  }
+  
+  .sectionOrnament {
+    margin-bottom: 28px;
+  
+    font: 50px var(--serif);
+    color: var(--gold);
+  }
+  
+  .bodyCopy {
+    max-width: 590px;
+    margin: 0 auto;
+  
+    color: #d1c1b0;
+    line-height: 1.8;
+  
+    font: italic 20px var(--serif);
+  }
+  
+  
+  /* =========================================================
+     06. INTRO / DATE / COUNTDOWN
+  ========================================================= */
+  
+  .introSection {
+    text-align: center;
+  
+    background: radial-gradient(
+      ellipse at 50% 45%,
+      #32131d,
+      #12080c 68%
+    );
+  }
+  
+  .dateLockup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  
+    width: max-content;
+    margin: 55px auto 25px;
+    padding: 20px 40px;
+  
+    color: var(--gold);
+  
+    border-top: 1px solid #c9a66b44;
+    border-bottom: 1px solid #c9a66b44;
+  }
+  
+  /* Optional date number styling */
+  
+  .dateDay {
+    font: 100px / 0.85 var(--serif);
+    color: var(--cream);
+  }
+  
+  .dateMonth {
+    margin-top: 14px;
+  
+    font-size: 11px;
+    letter-spacing: 0.25em;
+  }
+  
+  .dateYear {
+    margin-top: 8px;
+  
+    font: 24px var(--serif);
+    letter-spacing: 0.2em;
+  }
+  
+  .countdown {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+  
+    margin-top: 30px;
+  }
+  
+  .countUnit {
+    min-width: 54px;
+  }
+  
+  .countUnit b {
+    display: block;
+  
+    font: 32px var(--serif);
+    color: #e8d8bd;
+  }
+  
+  .countUnit span {
+    font-size: 9px;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+  }
+  
+  
+  /* =========================================================
+     07. COUPLE SECTION
+  ========================================================= */
+  
+  .coupleSection {
+    background: #16090e;
+  }
+  
+  .coupleGrid {
+    display: grid;
+    grid-template-columns: 1fr 70px 1fr;
+    align-items: center;
+    gap: 22px;
+  
+    max-width: 1040px;
+    margin: auto;
+  }
+  
+  .personCard {
+    overflow: hidden;
+  
+    background: #211016;
+    border: 1px solid #b9945940;
+  }
+  
+  .portrait {
+    position: relative;
+  
+    height: clamp(280px, 42vw, 520px);
+  
+    background-position: center;
+    background-size: cover;
+  }
+  
+  .portrait::after {
+    content: '';
+  
+    position: absolute;
+    inset: 0;
+  
+    background: linear-gradient(
+      0deg,
+      #13070c,
+      transparent 42%
+    );
+  }
+  
+  .portraitBride {
+    background-image: url('../media/bride.png');
+  }
+  
+  .portraitGroom {
+    background-image: url('../media/groom.png');
+  }
+  
+  .personText {
+    padding: 24px 30px 34px;
+    text-align: center;
+  }
+  
+  .personText span {
+    font-size: 9px;
+    letter-spacing: 0.24em;
+    color: var(--gold);
+  }
+  
+  .personText h3 {
+    margin: 8px 0;
+  
+    font: 54px var(--serif);
+  }
+  
+  .personText p {
+    max-width: 390px;
+    margin: auto;
+  
+    font: italic 17px / 1.6 var(--serif);
+    color: #cdbdaf;
+  }
+  
+  .coupleAmp {
+    font: italic 46px var(--serif);
+    text-align: center;
+    color: var(--gold);
+  }
+  
+  
+  /* =========================================================
+     08. CELEBRATION / EVENT CARD
+  ========================================================= */
+  
+  .celebration {
+    background: #0d0609;
+  }
+  
+  .eventCard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  
+    max-width: 1000px;
+    margin: auto;
+  
+    background: #1a0b11;
+    border: 1px solid #c9a66b4d;
+  }
+  
+  .eventPhoto {
+    min-height: 420px;
+  
+    background: url('../media/eventimage.png') center / cover;
+  }
+  
+  .eventDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+    padding: clamp(30px, 5vw, 65px);
+  }
+  
+  .eventNumber {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+  }
+  
+  .eventDetails h3 {
+    margin: 18px 0;
+  
+    font: 50px var(--serif);
+  }
+  
+  .eventTime {
+    font-size: 12px;
+    letter-spacing: 0.06em;
+    color: var(--gold);
+  }
+  
+  .eventDetails p:not(.eventTime) {
+    font: italic 18px / 1.6 var(--serif);
+    color: #d0c1b2;
+  }
+  
+  .textLink {
+    margin-top: 20px;
+  
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+  }
+  
+  
+  /* =========================================================
+     09. VENUE SECTION
+  ========================================================= */
+  
+  .venueSection {
+    position: relative;
+  
+    min-height: 75vh;
+  
+    display: grid;
+    place-items: center;
+  
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .venueBackground {
+    position: absolute;
+    inset: 0;
+  
+    background: radial-gradient(
+      ellipse at 50% 35%,
+      #542133 0%,
+      #210d16 45%,
+      #10070a 80%
+    );
+  }
+  
+  .venueContent {
+    position: relative;
+  }
+  
+  .venueName {
+    margin: 35px 0 5px;
+  
+    font: 28px var(--serif);
+    color: var(--gold);
+  }
+  
+  .venueAddress {
+    margin-bottom: 30px;
+  
+    font: italic 18px var(--serif);
+    color: #c9b9a8;
+  }
+  
+  
+  /* =========================================================
+     10. CLOSING SECTION
+  ========================================================= */
+  
+  .closingSection {
+    position: relative;
+  
+    min-height: 700px;
+  
+    display: grid;
+    place-items: center;
+  
+    overflow: hidden;
+    background: #16080d;
+  }
+  
+  .closingImage {
+    position: absolute;
+    inset: 0;
+  
+    background: url('../media/closing.jpg') center / cover no-repeat;
+    filter: saturate(0.85);
+  }
+  
+  .closingImage::after {
+    content: '';
+  
+    position: absolute;
+    inset: 0;
+  
+    background: rgba(16, 6, 11, 0.60);
+  }
+  
+  .closingContent {
+    position: relative;
+  
+    max-width: 700px;
+    padding: 30px;
+  
+    text-align: center;
+  }
+  
+  .monogram {
+    font: 36px var(--serif);
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+  
+  .monogram i,
+  .closingContent h2 i {
+    font-style: italic;
+    color: var(--gold);
+  }
+  
+  .closingContent p {
+    margin: 35px auto;
+  
+    font: italic 24px / 1.5 var(--serif);
+    color: #e2d5c5;
+  }
+  
+  .closingSmall {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+  }
+  
+  .closingContent h2 {
+    margin: 24px 0;
+  
+    font: clamp(48px, 8vw, 90px) var(--serif);
+  }
+  
+  .closingDate {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: #d8c7ad;
+  }
+  
+  
+  /* =========================================================
+     11. FOOTER
+  ========================================================= */
+  
+  .footer {
+    display: flex;
+    justify-content: space-between;
+  
+    padding: 22px 7vw;
+  
+    background: #0a0407;
+    color: #8f7e70;
+  
+    font-size: 9px;
+    letter-spacing: 0.16em;
+  }
+  
+  .footer a {
+    color: var(--gold);
+  }
+  
+  
+  /* =========================================================
+     12. REVEAL ANIMATIONS
+  ========================================================= */
+  
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+  
+    transition:
+      opacity 0.9s ease,
+      transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+  
+  
+  /* =========================================================
+     13. FALLING PETALS
+  ========================================================= */
+  
+  .petalLayer {
+    position: fixed;
+    inset: 0;
+    z-index: 5;
+  
+    overflow: hidden;
+    pointer-events: none;
+  }
+  
+  .petal {
+    position: absolute;
+    top: -20px;
+  
+    width: 8px;
+    height: 13px;
+  
+    background: linear-gradient(
+      135deg,
+      #d4a15a,
+      #8b4e26
+    );
+  
+    border-radius: 90% 0 90% 0;
+    opacity: 0.65;
+  
+    animation: fall linear forwards;
+  }
+  
+  
+  /* =========================================================
+     14. WEDDING INVITATION CURTAIN
+  ========================================================= */
+  
+  /* ===== FIX CURTAIN INTRO POSITION & BUTTON ===== */
+
+.loaderCurtain .introText {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    bottom: auto !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    gap: 28px !important;
+    width: max-content !important;
+    max-width: 90vw !important;
+
+    text-align: center !important;
+    z-index: 110 !important;
+    opacity: 1;
+}
+
+/* Heading above the button */
+.loaderCurtain .tinyGold {
+    opacity: 1 !important;
+    color: #d8b77b !important;
+    font-size: 10px !important;
+    letter-spacing: 0.3em !important;
+}
+
+/* Open invitation button */
+.loaderCurtain .openInviteBtn {
+    appearance: none !important;
+    -webkit-appearance: none !important;
+
+    background: rgba(22, 7, 12, 0.55) !important;
+    border: 1px solid #c9a66b !important;
+    border-radius: 0 !important;
+
+    min-width: 220px !important;
+    padding: 24px 35px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+
+    color: #e5c891 !important;
+    box-shadow: 0 0 25px #c9a66b15 !important;
+
+    cursor: pointer !important;
+    font-family: var(--sans) !important;
+    animation: elegantPulse 3s ease-in-out infinite;
+}
+
+.loaderCurtain .btnOrnament {
+    color: #c9a66b !important;
+    font-size: 18px !important;
+}
+
+.loaderCurtain .tapLabel {
+    color: #f0d9ad !important;
+    background: transparent !important;
+
+    font-family: var(--sans) !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.32em !important;
+}
+
+.loaderCurtain .btnLine {
+    display: block !important;
+    width: 35px !important;
+    height: 1px !important;
+    background: #c9a66b !important;
+}
+
+.loaderCurtain .openInviteBtn:hover .btnLine {
+    width: 65px !important;
+}
+
+.loaderCurtain .openInviteBtn:hover .btnOrnament {
+    transform: rotate(45deg);
+}
+
+@media (max-width: 480px) {
+    .loaderCurtain .introText {
+        gap: 22px !important;
+    }
+
+    .loaderCurtain .openInviteBtn {
+        min-width: 200px !important;
+        padding: 22px 28px !important;
+    }
+}
+  /* =========================================================
+     15. CENTERED CURTAIN INTRO
+  ========================================================= */
+  
+  .introText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 5;
+  
+    transform: translate(-50%, -50%);
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+  
+    width: max-content;
+    max-width: 90vw;
+  
+    color: var(--gold-light);
+    text-align: center;
+  
+    transition: opacity 0.6s ease;
+  }
+  
+  /* Intro heading */
+  
+  .tinyGold {
+    font-size: 10px;
+    letter-spacing: 0.32em;
+  
+    color: #d8b77b;
+    opacity: 1;
+  }
+  
+  
+  /* =========================================================
+     16. ELEGANT TAP TO OPEN BUTTON
+  ========================================================= */
+  
+  .openInviteBtn {
+    position: relative;
+  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 13px;
+  
+    min-width: 210px;
+    padding: 25px 42px;
+  
+    background: rgba(22, 7, 12, 0.18);
+    border: 1px solid rgba(201, 166, 107, 0.55);
+  
+    color: #e5c891;
+    cursor: pointer;
+  
+    transition:
+      background 0.4s ease,
+      border-color 0.4s ease,
+      box-shadow 0.4s ease,
+      transform 0.4s ease;
+  
+    animation: elegantPulse 3s ease-in-out infinite;
+  }
+  
+  /* Decorative diamond */
+  
+  .btnOrnament {
+    font-size: 17px;
+    color: #c9a66b;
+  
+    transition: transform 0.5s ease;
+  }
+  
+  /* Button lettering */
+  
+  .tapLabel {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.35em;
+  
+    color: #f0d9ad;
+  }
+  
+  /* Decorative underline */
+  
+  .btnLine {
+    width: 35px;
+    height: 1px;
+  
+    background: #c9a66b;
+  
+    transition: width 0.4s ease;
+  }
+  
+  /* Hover */
+  
+  .openInviteBtn:hover {
+    background: rgba(201, 166, 107, 0.06);
+    border-color: #d8b77b;
+  
+    box-shadow: 0 0 30px rgba(201, 166, 107, 0.12);
+  }
+  
+  .openInviteBtn:hover .btnOrnament {
+    transform: rotate(45deg);
+  }
+  
+  .openInviteBtn:hover .btnLine {
+    width: 70px;
+  }
+  
+  /* Click */
+  
+  .openInviteBtn:active {
+    transform: scale(0.97);
+  }
+  
+  /* Keyboard accessibility */
+  
+  .openInviteBtn:focus-visible {
+    outline: 1px solid var(--gold);
+    outline-offset: 5px;
+  }
+  
+  /* Soft gold glow */
+  
+  @keyframes elegantPulse {
+    0%, 100% {
+      box-shadow: 0 0 0 rgba(201, 166, 107, 0);
+    }
+  
+    50% {
+      box-shadow: 0 0 20px rgba(201, 166, 107, 0.10);
+    }
+  }
+  
+  
+  /* =========================================================
+     17. CURTAIN OPEN ANIMATION
+  ========================================================= */
+  
+  .loaderCurtain.open .curtain-left {
+    transform: translateX(-101%);
+  }
+  
+  .loaderCurtain.open .curtain-right {
+    transform: translateX(101%) scaleX(-1);
+  }
+  
+  .loaderCurtain.open .curtain-center {
+    opacity: 0;
+  }
+  
+  .loaderCurtain.open .introText {
+    opacity: 0;
+  }
+  
+  .loaderCurtain.dismissed {
+    visibility: hidden;
+    pointer-events: none;
+  }
+  
+  .loaderCurtain:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: -5px;
+  }
+  
+  
+  /* =========================================================
+     18. FUNCTIONS / WEDDING SCHEDULE
+  ========================================================= */
+  
+  .functionsSection {
+    background: radial-gradient(
+      ellipse at 50% 15%,
+      #3a1724 0%,
+      #16080d 65%
+    );
+  }
+  
+  .functionDays {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  
+  .functionDay {
+    padding: clamp(24px, 4vw, 46px);
+  
+    background: linear-gradient(
+      145deg,
+      #241018,
+      #15080d
+    );
+  
+    border: 1px solid #c9a66b40;
+    box-shadow: 0 22px 60px #0003;
+  }
+  
+  .functionDayHead {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  
+    padding-bottom: 24px;
+  
+    border-bottom: 1px solid #c9a66b35;
+  }
+  
+  /* Function date */
+  
+  .functionDate {
+    font: clamp(70px, 8vw, 100px) / 0.8 var(--serif);
+    color: var(--cream);
+  }
+  
+  .functionMonth {
+    font-size: 10px;
+    letter-spacing: 0.24em;
+    color: var(--gold);
+  }
+  
+  .functionDayHead h3 {
+    margin: 5px 0 0;
+  
+    font: 32px var(--serif);
+    color: #e8d8bd;
+  }
+  
+  
+  /* Function timeline */
+  
+  .functionTimeline {
+    padding-top: 22px;
+  }
+  
+  .functionItem {
+    position: relative;
+  
+    display: grid;
+    grid-template-columns: 82px 12px 1fr;
+    align-items: start;
+    gap: 13px;
+  
+    padding-bottom: 25px;
+  }
+  
+  .functionItem:last-child {
+    padding-bottom: 0;
+  }
+  
+  .functionTime {
+    padding-top: 3px;
+  
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+  
+    white-space: nowrap;
+  }
+  
+  .functionDot {
+    position: relative;
+  
+    width: 9px;
+    height: 9px;
+  
+    margin-top: 6px;
+  
+    background: var(--gold);
+    border-radius: 50%;
+  
+    box-shadow: 0 0 0 4px #c9a66b20;
+  }
+  
+  .functionItem:not(:last-child) .functionDot::after {
+    content: '';
+  
+    position: absolute;
+    top: 13px;
+    left: 4px;
+  
+    width: 1px;
+    height: calc(100% + 22px);
+  
+    background: #c9a66b40;
+  }
+  
+  .functionItem h4 {
+    margin: 0 0 6px;
+  
+    font: 500 26px / 1 var(--serif);
+    color: var(--cream);
+  }
+  
+  .functionItem p {
+    margin: 0;
+  
+    font: italic 15px / 1.45 var(--serif);
+    color: #bfae9d;
+  }
+  
+  
+  /* =========================================================
+     19. DATE STYLING
+  ========================================================= */
+  
+  .dateDay .functionDate {
+    font-family: var(--sans);
+  
+    font-size: 5rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+  
+  
+  /* =========================================================
+     20. INVITATION FADE-IN AFTER CURTAIN OPENS
+  ========================================================= */
+  
+  /* Hide website before invitation opens */
+  
+  .hero,
+  .section,
+  .venueSection,
+  .closingSection,
+  .footer,
+  .topNav,
+  .scrollProgress,
+  .petalLayer {
+    opacity: 0;
+    transition: opacity 3.5s ease-in-out;
+  }
+  
+  /* Reveal website when body receives invite-open */
+  
+  body.invite-open .hero,
+  body.invite-open .section,
+  body.invite-open .venueSection,
+  body.invite-open .closingSection,
+  body.invite-open .footer,
+  body.invite-open .topNav,
+  body.invite-open .scrollProgress,
+  body.invite-open .petalLayer {
+    opacity: 1;
+  }
+  
+  
+  /* =========================================================
+     21. RESPONSIVE — TABLET & MOBILE
+  ========================================================= */
+  
+  @media (max-width: 850px) {
+  
+    .functionDays {
+      grid-template-columns: 1fr;
+      max-width: 600px;
+    }
+  
+  }
+  
+  
+  /* =========================================================
+     22. RESPONSIVE — MOBILE
+  ========================================================= */
+  
+  @media (max-width: 760px) {
+  
+    /* Navigation */
+  
+    .topNav {
+      height: 58px;
+    }
+  
+    .topNav nav {
+      display: none;
+  
+      position: absolute;
+      top: 58px;
+      left: 0;
+      right: 0;
+  
+      padding: 22px;
+  
+      background: #16070cf5;
+  
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .topNav nav.show {
+      display: flex;
+    }
+  
+    .navButton {
+      display: none;
+    }
+  
+    .menuToggle {
+      display: block;
+    }
+  
+  
+    /* Hero */
+  
+    .heroContent {
+      padding-top: 90px;
+    }
+  
+    .hero h1 {
+      margin: 35px 0;
+  
+      font-size: clamp(75px, 22vw, 130px);
+    }
+  
+    .hero h1 em {
+      margin: 25px 0;
+      font-size: 30px;
+    }
+  
+    .heroWelcome {
+      font-size: 18px;
+    }
+  
+  
+    /* Sections */
+  
+    .section {
+      padding: 80px 6vw;
+    }
+  
+    .section h2 {
+      font-size: 52px;
+    }
+  
+  
+    /* Couple */
+  
+    .coupleGrid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+  
+    .coupleAmp {
+      font-size: 36px;
+    }
+  
+    .personCard {
+      width: 100%;
+      max-width: 460px;
+      margin: auto;
+    }
+  
+    .portrait {
+      height: 430px;
+    }
+  
+  
+    /* Event */
+  
+    .eventCard {
+      grid-template-columns: 1fr;
+    }
+  
+    .eventPhoto {
+      min-height: 300px;
+    }
+  
+    .eventDetails h3 {
+      font-size: 42px;
+    }
+  
+  
+    /* Closing */
+  
+    .closingSection {
+      min-height: 620px;
+    }
+  
+    .closingContent p {
+      font-size: 21px;
+    }
+  
+  
+    /* Footer */
+  
+    .footer {
+      flex-wrap: wrap;
+      gap: 12px;
+  
+      font-size: 8px;
+    }
+  
+  
+    /* Countdown */
+  
+    .countdown {
+      gap: 9px;
+    }
+  
+    .countUnit b {
+      font-size: 26px;
+    }
+  
+  }
+  
+  
+  /* =========================================================
+     23. RESPONSIVE — SMALL MOBILE
+  ========================================================= */
+  
+  @media (max-width: 480px) {
+  
+    .functionDay {
+      padding: 22px 18px;
+    }
+  
+    .functionItem {
+      grid-template-columns: 72px 10px 1fr;
+      gap: 10px;
+    }
+  
+    .functionItem h4 {
+      font-size: 23px;
+    }
+  
+    .functionItem p {
+      font-size: 14px;
+    }
+  
+    .functionDate {
+      font-size: 76px;
+    }
+  
+  
+    /* Curtain invitation */
+  
+    .introText {
+      gap: 22px;
+      width: 90%;
+    }
+  
+    .tinyGold {
+      font-size: 9px;
+      letter-spacing: 0.25em;
+    }
+  
+    .openInviteBtn {
+      min-width: 195px;
+      padding: 23px 30px;
+    }
+  
+    .tapLabel {
+      font-size: 9px;
+      letter-spacing: 0.3em;
+    }
+  
+  }
+  
+  
+  /* =========================================================
+     24. ACCESSIBILITY — REDUCED MOTION
+  ========================================================= */
+  
+  @media (prefers-reduced-motion: reduce) {
+  
+    *,
+    *::before,
+    *::after {
+      scroll-behavior: auto !important;
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  
+    .hero,
+    .section,
+    .venueSection,
+    .closingSection,
+    .footer,
+    .topNav,
+    .scrollProgress,
+    .petalLayer {
+      transition-duration: 0.01ms !important;
+    }
+  
+  }
+  
